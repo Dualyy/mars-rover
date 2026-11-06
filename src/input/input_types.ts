@@ -1,9 +1,17 @@
 //Rover instructions
 const INSTRUCTIONS = ["L", "R", "M"] as const;
 
-type Instruction = (typeof INSTRUCTIONS)[number]; 
+export type Instruction = (typeof INSTRUCTIONS)[number];
 
 //Compass directions
-const COMPASS_DIRECTIONS = ["N", "E","S","W"] as const;
+const COMPASS_DIRECTIONS = ["N", "E", "S", "W"] as const;
 
-type Directions = (typeof COMPASS_DIRECTIONS)[number];
+export type CompassDirections = (typeof COMPASS_DIRECTIONS)[number];
+
+//Position
+
+export interface Position {
+    readonly x: number;
+    readonly y: number;
+    readonly facing: CompassDirections;
+}
