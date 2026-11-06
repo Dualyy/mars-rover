@@ -15,3 +15,6 @@ export interface Position {
     readonly y: number;
     readonly facing: CompassDirections;
 }
+
+//startingPosition
+export type ValidStartingPositionInput = [number,number,CompassDirections];
