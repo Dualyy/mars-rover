@@ -1,4 +1,4 @@
-import { CompassDirections, Position } from "../input/input_types";
+import { CompassDirections, Position, ValidStartingPositionInput } from "../input/input_types";
 
 export function isPosition(toCheck: unknown): toCheck is Position {
     if (toCheck !== null && toCheck !== undefined) {
@@ -18,4 +18,15 @@ export function isCompassDirection(toCheck: unknown): toCheck is CompassDirectio
         }
     }
     return false
+}
+
+export function isValidStartingPosition(toCheck: unknown):toCheck is ValidStartingPositionInput {
+    const directions = ["N", "E", "S", "W"]
+    
+    if(!Array.isArray(toCheck)){
+        return false
+    }
+    const [x,y,coordinate] = toCheck
+  
+   return Number.isInteger(x) && Number.isInteger(y) && directions.includes(coordinate)
 }
