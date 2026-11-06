@@ -29,13 +29,9 @@ export function parseInstructions(instructionInput: string): Instruction[] {
     }
 }
 
-export function parsePlateauCreation(size: number[]): Plateau {
-    if (Array.isArray(size)) {
-        if (size.length === 2) {
-            if (isValidGridSize(size)) {
-                const [x, y] = size
-                return { x: Math.abs(x), y: Math.abs(y) }
-            }
-        }
+export function parsePlateauCreation(size: unknown): Plateau {
+    if (isValidGridSize(size)) {
+        const [x, y] = size
+        return { x: Math.abs(x), y: Math.abs(y) }
     } throw new Error("invalid grid size - Please enter valid Integers")
 }

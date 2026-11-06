@@ -50,7 +50,7 @@ export function isValidInstructions(toCheck: unknown): toCheck is ValidInstructi
 }
 
 export function isValidGridSize(toCheck: unknown): toCheck is ValidGridSize {
-    if(!Array.isArray(toCheck) || toCheck.length > 2){
+    if(!Array.isArray(toCheck) || toCheck.length !== 2){
         return false;
     }
     const [x,y] = toCheck

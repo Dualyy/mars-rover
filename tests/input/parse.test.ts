@@ -50,32 +50,32 @@ describe("parseInstructions", () => {
 
 describe("parseGridSize", () => {
     test("returns a valid Plateau", () => {
-        const input: number[] = [5,6];
+        const input: number[] = [5, 6];
         expect(parsePlateauCreation(input).x).toBe(5);
         expect(parsePlateauCreation(input).y).toBe(6)
     });
 
     test("returns a valid Plateau when given negative int at x", () => {
-        const input: number[] = [-5,6];
+        const input: number[] = [-5, 6];
         expect(parsePlateauCreation(input).x).toBe(5);
         expect(parsePlateauCreation(input).y).toBe(6)
     });
 
     test("returns a valid Plateau when given two negative int at y", () => {
-        const input: number[] = [5,-6];
+        const input: number[] = [5, -6];
         expect(parsePlateauCreation(input).x).toBe(5);
         expect(parsePlateauCreation(input).y).toBe(6)
     });
 
     test("returns a valid Plateau when given two negative int", () => {
-        const input: number[] = [-5,-6];
+        const input: number[] = [-5, -6];
         expect(parsePlateauCreation(input).x).toBe(5);
         expect(parsePlateauCreation(input).y).toBe(6)
     });
 
     test("throws error when given non number array", () => {
-        const input = ["test",-6];
-        expect(() => {parsePlateauCreation(input)}).toThrow("invalid grid size - Please enter valid Integers");
+        const input = ["test", -6];
+        expect(() => { parsePlateauCreation(input) }).toThrow("invalid grid size - Please enter valid Integers");
     });
 
 })
