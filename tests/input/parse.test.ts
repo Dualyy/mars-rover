@@ -1,6 +1,7 @@
 import { vitest, describe, test, beforeEach, expect } from "vitest";
-import { parseStartingPosition } from "../../src/input/parse_inputs";
-import { isPosition } from "../../src/utility/typeguards";
+import { parseInstructions, parseStartingPosition } from "../../src/input/parse_inputs";
+import { isPosition, isValidInstructions } from "../../src/utility/typeguards";
+import { Instruction, INSTRUCTIONS } from "../../src/input/input_types";
 
 describe("parseStartingPosition", () => {
     test("parseStartingPosition returns type of Position", () => {
@@ -32,3 +33,16 @@ describe("parseStartingPosition", () => {
     });
 })
 
+describe("parseInstructions", () => {
+    test("returns a valid Array of instructions", () => {
+        const input: string = "LMMMMR"
+        expect(parseInstructions(input)[0]).toBe("L");
+        expect(parseInstructions(input)[1]).toBe("M");
+        expect(parseInstructions(input)[2]).toBe("M");
+    });
+
+    test("throws an invalid instructions string error", () => {
+        const input: string = "LMMMMW"
+        expect(() => { isValidInstructions(parseInstructions(input)) }).throw(("invalid instruction string"));
+    });
+})

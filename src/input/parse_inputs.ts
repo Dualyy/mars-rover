@@ -1,5 +1,5 @@
-import { isValidStartingPosition } from "../utility/typeguards";
-import {Position } from "./input_types";
+import { isValidInstructions, isValidStartingPosition } from "../utility/typeguards";
+import { Instruction, Position } from "./input_types";
 
 export function parseStartingPosition(inputPosition: string[]): Position {
     const [x, y, direction] = inputPosition
@@ -17,3 +17,13 @@ export function parseStartingPosition(inputPosition: string[]): Position {
     }
 }
 
+
+export function parseInstructions(instructionInput: string): Instruction[] {
+    const instructionUpper = instructionInput.toUpperCase()
+    if (isValidInstructions(instructionUpper)) {
+        const instructions = instructionUpper
+        return instructions
+    } else {
+        throw new Error("invalid instruction string")
+    }
+}
