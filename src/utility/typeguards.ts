@@ -24,9 +24,12 @@ export function isValidStartingPosition(toCheck: unknown):toCheck is ValidStarti
     const directions = ["N", "E", "S", "W"]
     
     if(!Array.isArray(toCheck)){
-        return false
+        return false;
     }
-    const [x,y,coordinate] = toCheck
+    if(toCheck.length > 3){
+        return false;
+    }
+    const [x,y,coordinate] = toCheck;
   
-   return Number.isInteger(x) && Number.isInteger(y) && directions.includes(coordinate)
+   return Number.isInteger(x) && Number.isInteger(y) && directions.includes(coordinate);
 }
