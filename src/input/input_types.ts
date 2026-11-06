@@ -16,6 +16,8 @@ export interface Position {
     readonly facing: CompassDirections;
 }
 
+export type ValidGridSize = [number,number]
+
 //startingPosition
 export type ValidStartingPositionInput = [number,number,CompassDirections];
 

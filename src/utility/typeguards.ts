@@ -1,4 +1,4 @@
-import { CompassDirections, INSTRUCTIONS, Position, ValidInstructions, ValidStartingPositionInput } from "../input/input_types";
+import { CompassDirections, INSTRUCTIONS, Position, ValidGridSize, ValidInstructions, ValidStartingPositionInput } from "../input/input_types";
 
 export function isPosition(toCheck: unknown): toCheck is Position {
     if (toCheck !== null && toCheck !== undefined) {
@@ -47,4 +47,12 @@ export function isValidInstructions(toCheck: unknown): toCheck is ValidInstructi
         }
     }
     return true;
+}
+
+export function isValidGridSize(toCheck: unknown): toCheck is ValidGridSize {
+    if(!Array.isArray(toCheck) || toCheck.length > 2){
+        return false;
+    }
+    const [x,y] = toCheck
+    return Number.isInteger(x) && Number.isInteger(y)
 }

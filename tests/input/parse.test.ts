@@ -1,5 +1,5 @@
 import { vitest, describe, test, beforeEach, expect } from "vitest";
-import { parseInstructions, parseStartingPosition } from "../../src/input/parse_inputs";
+import { parseInstructions, parsePlateauCreation, parseStartingPosition } from "../../src/input/parse_inputs";
 import { isPosition, isValidInstructions } from "../../src/utility/typeguards";
 import { Instruction, INSTRUCTIONS } from "../../src/input/input_types";
 
@@ -45,4 +45,37 @@ describe("parseInstructions", () => {
         const input: string = "LMMMMW"
         expect(() => { isValidInstructions(parseInstructions(input)) }).throw(("invalid instruction string"));
     });
+})
+
+
+describe("parseGridSize", () => {
+    test("returns a valid Plateau", () => {
+        const input: number[] = [5,6];
+        expect(parsePlateauCreation(input).x).toBe(5);
+        expect(parsePlateauCreation(input).y).toBe(6)
+    });
+
+    test("returns a valid Plateau when given negative int at x", () => {
+        const input: number[] = [-5,6];
+        expect(parsePlateauCreation(input).x).toBe(5);
+        expect(parsePlateauCreation(input).y).toBe(6)
+    });
+
+    test("returns a valid Plateau when given two negative int at y", () => {
+        const input: number[] = [5,-6];
+        expect(parsePlateauCreation(input).x).toBe(5);
+        expect(parsePlateauCreation(input).y).toBe(6)
+    });
+
+    test("returns a valid Plateau when given two negative int", () => {
+        const input: number[] = [-5,-6];
+        expect(parsePlateauCreation(input).x).toBe(5);
+        expect(parsePlateauCreation(input).y).toBe(6)
+    });
+
+    test("throws error when given non number array", () => {
+        const input = ["test",-6];
+        expect(() => {parsePlateauCreation(input)}).toThrow("invalid grid size - Please enter valid Integers");
+    });
+
 })
