@@ -21,12 +21,11 @@ export function parseStartingPosition(inputPosition: string[]): Position {
 
 export function parseInstructions(instructionInput: string): Instruction[] {
     const instructionUpper = instructionInput.toUpperCase()
-    if (isValidInstructions(instructionUpper)) {
-        const instructions = instructionUpper
-        return instructions
-    } else {
+    if (!isValidInstructions(instructionUpper)) {
         throw new Error("invalid instruction string")
     }
+    const instructions = instructionUpper.split("")
+    return instructions as Instruction[]
 }
 
 export function parsePlateauCreation(size: unknown): Plateau {

@@ -26,7 +26,7 @@ export function isValidStartingPosition(toCheck: unknown): toCheck is ValidStart
     if (!Array.isArray(toCheck)) {
         return false;
     }
-    if (toCheck.length > 3) {
+    if (toCheck.length !== 3) {
         return false;
     }
     const [x, y, coordinate] = toCheck;
@@ -35,18 +35,10 @@ export function isValidStartingPosition(toCheck: unknown): toCheck is ValidStart
 }
 
 
-export function isValidInstructions(toCheck: unknown): toCheck is ValidInstructions {
-    if (typeof (toCheck) !== "string") {
-        return false;
-    } else {
-        const instructionInput = toCheck.toUpperCase().split("");
-        for (let i = 0; i < instructionInput.length; i++) {
-            if (!["L", "R", "M"].includes(instructionInput[i])) {
-                return false;
-            }
-        }
-    }
-    return true;
+export function isValidInstructions(toCheck: string): boolean {
+    const INSTRUCTION_REGEX = /^[LRM]+/
+    return INSTRUCTION_REGEX.test(toCheck);
+  
 }
 
 export function isValidGridSize(toCheck: unknown): toCheck is ValidGridSize {
