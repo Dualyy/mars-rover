@@ -5,31 +5,36 @@ import { Instruction, INSTRUCTIONS } from "../../src/input/input_types";
 
 describe("parseStartingPosition", () => {
     test("parseStartingPosition returns type of Position", () => {
-        const inputPosition = parseStartingPosition(["5", "5", "E"])
+        const inputPosition = parseStartingPosition("5 5 E")
         console.log(inputPosition)
         expect(isPosition(inputPosition)).toBe(true)
     });
 
     test("parseStartingPosition throws Error when Invalid", () => {
-        const input = ["5", "5", "Banana"]
+        const input = "5 5 Banana"
         expect(() => { parseStartingPosition(input) }).toThrow()
     });
 
     test("parseStartingPosition returns valid position with lower case direction", () => {
-        const input = ["5", "5", "e"]
+        const input = "5 5 e"
         expect(isPosition(parseStartingPosition(input))).toBe(true)
     });
 
     test("parseStartingPosition throws with string as coordinate", () => {
-        const input = ["ABC", "5", "e"]
+        const input = "ABC 5 E"
         expect(() => { parseStartingPosition(input) }).toThrow("Invalid input.");
     });
 
     test("parseStartingPosition returns valid position with input as values", () => {
-        const input = ["6", "5", "e"]
+        const input = "6 5 e"
         expect(parseStartingPosition(input)["x"]).toBe(6);
         expect(parseStartingPosition(input)["y"]).toBe(5);
         expect(parseStartingPosition(input)["facing"]).toBe("E");
+    });
+
+    test("parseStartingPosition returns invalid input when given a number instead of direction", () => {
+        const input = "6 5 5"
+        expect(() => { parseStartingPosition(input) }).toThrow("Invalid input.");
     });
 })
 
@@ -43,7 +48,7 @@ describe("parseInstructions", () => {
 
     test("throws an invalid instructions string error", () => {
         const input: string = "LMMMMW"
-        expect(() => { isValidInstructions(parseInstructions(input)) }).throw(("invalid instruction string"));
+        expect(() => {(parseInstructions(input)) }).throw(("invalid instruction string"));
     });
 })
 
@@ -61,7 +66,7 @@ describe("parseGridSize", () => {
         expect(parsePlateauCreation(input).y).toBe(6)
     });
 
-    test("returns a valid Plateau when given two negative int at y", () => {
+    test("returns a valid Plateau when given negative int at y", () => {
         const input: number[] = [5, -6];
         expect(parsePlateauCreation(input).x).toBe(5);
         expect(parsePlateauCreation(input).y).toBe(6)

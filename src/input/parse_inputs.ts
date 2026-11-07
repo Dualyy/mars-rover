@@ -2,12 +2,13 @@ import { Plateau } from "../plateau/plateau_types";
 import { isValidGridSize, isValidInstructions, isValidStartingPosition } from "../utility/typeguards";
 import { Instruction, Position } from "./input_types";
 
-export function parseStartingPosition(inputPosition: string[]): Position {
-    const [x, y, direction] = inputPosition
+export function parseStartingPosition(inputPosition: string): Position {
+
+    const [x, y, direction] = inputPosition.split(" ")
     const inputPositionArray = [Number(x), Number(y), direction.toUpperCase()]
 
     if (!isValidStartingPosition(inputPositionArray)) {
-        throw new Error("Invalid input. ")
+        throw new Error("Invalid input.")
     } else {
         const [xCoordinate, yCoordinate, facingDirection] = inputPositionArray
         return {
