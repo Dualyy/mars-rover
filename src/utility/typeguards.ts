@@ -31,12 +31,12 @@ export function isValidStartingPosition(toCheck: unknown): toCheck is ValidStart
     }
     const [x, y, coordinate] = toCheck;
 
-    return Number.isInteger(x) && Number.isInteger(y) && directions.includes(coordinate);
+    return Number.isInteger(x) && Number.isInteger(y) && (typeof(coordinate) === "string" && directions.includes(coordinate));
 }
 
 
 export function isValidInstructions(toCheck: string): boolean {
-    const INSTRUCTION_REGEX = /^[LRM]+/
+    const INSTRUCTION_REGEX = /^[LRM]+$/
     return INSTRUCTION_REGEX.test(toCheck);
   
 }
